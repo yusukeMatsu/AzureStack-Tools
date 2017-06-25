@@ -112,13 +112,15 @@ if($spCreds)
 $spCred = New-AzureRmADSpCredential -ObjectId $adSp.Id -CertValue $keyValue -StartDate $cert.NotBefore -EndDate $cert.NotAfter -ErrorAction SilentlyContinue
 Write-Verbose "Added Key credential cert thumbprint $($cert.Thumbprint) start date: $($cert.NotBefore) end date: $($cert.NotAfter)" 
 
+$spCreds = Get-AzureRmADSpCredential -ObjectId $adSp.Id
+
 # Return info about the Azure Bridge application that was created or updated
  $bridgeAppInfo = @{
         ObjectId               = $adApp.ObjectId
         ApplicationId          = $adApp.ApplicationId
         ServicePrincipalObjId  = $adSp.Id
         ServicePrincipalNames  = $adSp.ServicePrincipalNames
-        SPCredentialInfo       = $spCred
+        SPCredentialInfo       = $spCreds
 }
 
 ($bridgeAppInfo)

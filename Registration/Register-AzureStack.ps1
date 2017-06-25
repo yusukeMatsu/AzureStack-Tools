@@ -54,7 +54,11 @@ param
 
     [Parameter(Mandatory=$false)]
     [ValidateNotNull()]
-    [string] $AgreementNumber
+    [string] $AgreementNumber,
+
+    [Parameter(Mandatory=$false)]
+    [ValidateNotNull()]
+    [string] $Token
 )
 
 # --------------------------------------------------------------------------------------
@@ -117,7 +121,14 @@ $registrationData = @{
 # ---------------------------------------------------------
 # Initialize the resource group
 
-$armToken = Get-Token
+if($Token)
+{
+    $armToken = $Token
+}
+else
+{
+    $armToken = Get-Token
+}
 
 if(-not $armToken)
 {

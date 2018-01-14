@@ -412,8 +412,8 @@ If ((Test-Path -Path "$($Toolspath)\Support\ERCS_Logs\ERCS_AzureStackLogs.ps1") 
     {
         Add-Type -AssemblyName System.Windows.Forms
         $FolderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog
-        $FolderBrowser.Description = 'Select the AzureStack-Tools-master folder'
-        $FolderBrowser.SelectedPath = 'C:\’
+        $FolderBrowser.Description = "Select the AzureStack-Tools-master folder"
+        $FolderBrowser.SelectedPath = "C:\"
         $FolderBrowser.ShowNewFolderButton = $false
         $result = $FolderBrowser.ShowDialog((New-Object System.Windows.Forms.Form -Property @{TopMost = $true }))
         if ($result -eq [Windows.Forms.DialogResult]::OK)
